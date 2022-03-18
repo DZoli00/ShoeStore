@@ -1,0 +1,6 @@
+com.example.ps_project
+com.example.ps_project.configuration
+com.example.ps_project.controller
+com.example.ps_project.entity
+com.example.ps_project.repository
+com.example.ps_project.service
