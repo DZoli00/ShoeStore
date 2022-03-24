@@ -2,8 +2,8 @@ package com.example.ps_project.service;
 
 import com.example.ps_project.entity.Category;
 import com.example.ps_project.repository.CategoryRepository;
-import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,8 +12,9 @@ import java.util.Optional;
  */
 //metodele din interfata implementate
 //metoda GET si POST
-@Service
-public class CategoryService {
+
+@org.springframework.stereotype.Service
+public class CategoryService implements Service {
 
     private final CategoryRepository categoryRepository;
 
@@ -26,20 +27,15 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    /**
-     * Get categories list.
-     *
-     * @return list
-     */
-    public List<Category> getCategories(){ return categoryRepository.findAll();}
+    @Override
+    public List<Object> getItems() {
+        return Collections.singletonList(categoryRepository.findAll());
+    }
 
-    /**
-     * Add new category.
-     *
-     * @param category the category
-     */
-    public void addNewCategory(Category category){
-        Optional<Category> categoryOptional = categoryRepository.findCategoriesByName(category.getName());
-        categoryRepository.save(category);
+    @Override
+    public void addNewItem(Object o) {
+        Category newCategory = (Category)o;
+        Optional<Category> categoryOptional = categoryRepository.findCategoriesByName(newCategory.getName());
+        categoryRepository.save(newCategory);
     }
 }

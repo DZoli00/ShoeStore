@@ -3,9 +3,10 @@ package com.example.ps_project.service;
 
 import com.example.ps_project.entity.User;
 import com.example.ps_project.repository.UserRepository;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.lang.annotation.Annotation;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,8 +14,9 @@ import java.util.Optional;
  * The type User service.
  */
 //metodele GET, POST, PUT dupa id si DELETE dupa id
-@Service
-public class UserService {
+
+@org.springframework.stereotype.Service
+public class UserService implements Service {
 
     private final UserRepository userRepository;
 
@@ -27,26 +29,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    /**
-     * Get users list.
-     *
-     * @return list
-     */
-    public List<User> getUsers(){
-        return userRepository.findAll();
+    @Override
+    public List<Object> getItems() {
+        return Collections.singletonList(userRepository.findAll());
     }
 
-    /**
-     * Add new user.
-     *
-     * @param user the user
-     */
-    public void addNewUser(User user) {
-        Optional<User> userOptional = userRepository.findUsersByEmail(user.getEmail());
-        if(userOptional.isPresent()){
-            throw new IllegalStateException("Email taken.");
-        }
-        userRepository.save(user);
+    @Override
+    public void addNewItem(Object o) {
+        User newUser = (User) o;
+        userRepository.save(newUser);
     }
 
     /**
@@ -84,4 +75,5 @@ public class UserService {
             user.setEmail(email);
         }
     }
+
 }

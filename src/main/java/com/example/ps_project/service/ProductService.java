@@ -2,17 +2,19 @@ package com.example.ps_project.service;
 
 import com.example.ps_project.entity.Product;
 import com.example.ps_project.repository.ProductRepository;
-import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * The type Product service.
  */
-@Service
+
 //metodele GET si POST
-public class ProductService {
+
+@org.springframework.stereotype.Service
+public class ProductService implements Service {
 
     private final ProductRepository productRepository;
 
@@ -25,23 +27,18 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    /**
-     * Gets products.
-     *
-     * @return products
-     */
-    public List<Product> getProducts() { return productRepository.findAll(); }
+    @Override
+    public List<Object> getItems() {
+        return Collections.singletonList(productRepository.findAll());
+    }
 
-    /**
-     * Add new product.
-     *
-     * @param product the product
-     */
-    public void addNewProduct(Product product){
-        Optional<Product> productOptional = productRepository.findProductById(product.getId());
+    @Override
+    public void addNewItem(Object o) {
+        Product newProduct = (Product)o;
+        Optional<Product> productOptional = productRepository.findProductById(newProduct.getId());
         if(productOptional.isPresent()){
             throw new IllegalStateException("Product exists");
         }
-        productRepository.save(product);
+        productRepository.save(newProduct);
     }
 }

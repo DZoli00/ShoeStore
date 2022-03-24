@@ -2,6 +2,7 @@ package com.example.ps_project.controller;
 
 import com.example.ps_project.entity.Category;
 import com.example.ps_project.service.CategoryService;
+import com.example.ps_project.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @RequestMapping(path="api/v1/category")
 public class CategoryController {
 
-    private final CategoryService categoryService;
+    private final Service categoryService;
 
     @Autowired
     public CategoryController(CategoryService categoryService) {
@@ -20,8 +21,8 @@ public class CategoryController {
     }
     
     @GetMapping
-    public List<Category> getCategories(){ return categoryService.getCategories();}
+    public List<Object> getCategories(){ return categoryService.getItems();}
 
     @PostMapping
-    public void registerNewCategory(@RequestBody Category category){categoryService.addNewCategory(category);}
+    public void registerNewCategory(@RequestBody Category category){categoryService.addNewItem(category);}
 }

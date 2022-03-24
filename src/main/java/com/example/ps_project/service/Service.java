@@ -1,5 +1,7 @@
 package com.example.ps_project.service;
 
+import com.example.ps_project.entity.User;
+
 import java.util.List;
 
 public interface Service{

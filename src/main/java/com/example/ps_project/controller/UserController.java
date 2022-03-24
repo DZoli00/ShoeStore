@@ -1,10 +1,12 @@
 package com.example.ps_project.controller;
 
 import com.example.ps_project.entity.User;
+import com.example.ps_project.service.Service;
 import com.example.ps_project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 //in Controller implementam metodele/actiunile
@@ -12,24 +14,26 @@ import java.util.List;
 @RequestMapping(path="api/v1/user")
 public class UserController {
 
-    private final UserService userService;
+    private final Service userService;
 
     @Autowired
     public UserController(UserService userService) {
+
         this.userService = userService;
     }
 
     //metoda GET
     @GetMapping
-    public List<User> getUsers(){ return userService.getUsers();}
+    public List<Object> getUsers(){ return userService.getItems();}
 
     //metoda POST
     @PostMapping
     public void registerNewUser(@RequestBody User user){
-        userService.addNewUser(user);
+
+        userService.addNewItem(user);
     }
 
-    //metoda DELETE dupa id
+    /*//metoda DELETE dupa id
     @DeleteMapping(path= "{useId}")
     public void deleteUser(@PathVariable("useId") Long useId){
         userService.deleteUser(useId);
@@ -43,5 +47,5 @@ public class UserController {
             @RequestParam(required = false) String last_name,
             @RequestParam(required = false) String email){
         userService.updateUser(userId, first_name, last_name, email);
-    }
+    }*/
 }
