@@ -2,6 +2,8 @@ package com.example.ps_project.service;
 
 import com.example.ps_project.entity.Category;
 import com.example.ps_project.repository.CategoryRepository;
+import com.example.ps_project.repository.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,26 +18,26 @@ import java.util.Optional;
 @org.springframework.stereotype.Service
 public class CategoryService implements Service {
 
-    private final CategoryRepository categoryRepository;
+    private final Repository categoryRepository;
 
     /**
      * Instantiates a new Category service.
      *
      * @param categoryRepository the category repository
      */
+    @Autowired
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
     @Override
     public List<Object> getItems() {
-        return Collections.singletonList(categoryRepository.findAll());
+        return Collections.singletonList(categoryRepository.findAllItems());
     }
 
     @Override
     public void addNewItem(Object o) {
         Category newCategory = (Category)o;
-        Optional<Category> categoryOptional = categoryRepository.findCategoriesByName(newCategory.getName());
-        categoryRepository.save(newCategory);
+        categoryRepository.addItem(newCategory);
     }
 }

@@ -1,17 +1,34 @@
 package com.example.ps_project.repository;
 
 import com.example.ps_project.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
+import com.example.ps_project.jparepository.UserJpaRepository;
+import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
 
-@Repository
-public interface UserRepository extends JpaRepository<User,Long> {
+@Component
+public class UserRepository implements Repository{
+    UserJpaRepository jpaRepositoryInt;
 
-    //cautare dupa email
-    @Query("SELECT u FROM User u WHERE u.email = ?1")
-    // SELECT * from User where email = ?;
-    Optional<User> findUsersByEmail(String email);
+    public UserRepository(UserJpaRepository jpaRepositoryInt) {
+        this.jpaRepositoryInt = jpaRepositoryInt;
+    }
+
+    @Override
+    public List<Object> findAllItems() {
+        return Collections.singletonList(jpaRepositoryInt.findAll());
+    }
+
+    @Override
+    public void addItem(Object o) {
+        User newUser = (User) o;
+        jpaRepositoryInt.save(newUser);
+    }
+
+    @Override
+    public void addItems(List<Object> objects) {
+        List<User> users = (List<User>)(List<?>) objects;
+        jpaRepositoryInt.saveAll(users);
+    }
 }

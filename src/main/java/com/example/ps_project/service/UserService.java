@@ -2,7 +2,10 @@ package com.example.ps_project.service;
 
 
 import com.example.ps_project.entity.User;
+import com.example.ps_project.repository.Repository;
 import com.example.ps_project.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.transaction.Transactional;
 import java.lang.annotation.Annotation;
@@ -18,62 +21,72 @@ import java.util.Optional;
 @org.springframework.stereotype.Service
 public class UserService implements Service {
 
-    private final UserRepository userRepository;
+    private final Repository userRepository;
 
     /**
      * Instantiates a new User service.
      *
      * @param userRepository the user repository
      */
+
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Object> getItems() {
-        return Collections.singletonList(userRepository.findAll());
+        return Collections.singletonList(userRepository.findAllItems());
     }
 
+    /**
+     *
+     * @param o
+     */
     @Override
     public void addNewItem(Object o) {
         User newUser = (User) o;
-        userRepository.save(newUser);
+        userRepository.addItem(newUser);
     }
 
-    /**
-     * Delete user.
-     *
-     * @param userId the user id
-     */
-    public void deleteUser(Long userId) {
-        boolean found = userRepository.existsById(userId);
-        if (!found) {
-            throw new IllegalStateException("User with this name " + userId + "does not exist");
-        }
-        userRepository.deleteById(userId);
-    }
-
-
-    /**
-     * Update user.
-     *
-     * @param userId    the user id
-     * @param firstName the first name
-     * @param lastName  the last name
-     * @param email     the email
-     */
-    @Transactional
-    public void updateUser(Long userId, String firstName, String lastName, String email){
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("user with id " + userId + " doesn't exist"));
-        if(firstName != null) {
-            user.setFirst_name(firstName);
-        }
-        if(lastName != null) {
-            user.setLast_name(lastName);
-        }
-        if(email != null) {
-            user.setEmail(email);
-        }
-    }
+//    /**
+//     * Delete user.
+//     *
+//     * @param userId the user id
+//     */
+//    public void deleteUser(Long userId) {
+//        boolean found = userRepository.existsById(userId);
+//        if (!found) {
+//            throw new IllegalStateException("User with this name " + userId + "does not exist");
+//        }
+//        userRepository.deleteById(userId);
+//    }
+//
+//
+//    /**
+//     * Update user.
+//     *
+//     * @param userId    the user id
+//     * @param firstName the first name
+//     * @param lastName  the last name
+//     * @param email     the email
+//     */
+//    @Transactional
+//    public void updateUser(Long userId, String firstName, String lastName, String email){
+//        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("user with id " + userId + " doesn't exist"));
+//        if(firstName != null) {
+//            user.setFirst_name(firstName);
+//        }
+//        if(lastName != null) {
+//            user.setLast_name(lastName);
+//        }
+//        if(email != null) {
+//            user.setEmail(email);
+//        }
+//    }
 
 }

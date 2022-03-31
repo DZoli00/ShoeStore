@@ -3,8 +3,7 @@ package com.example.ps_project.configuration;
 import com.example.ps_project.entity.Category;
 import com.example.ps_project.entity.Product;
 import com.example.ps_project.entity.User;
-import com.example.ps_project.repository.CategoryRepository;
-import com.example.ps_project.repository.ProductRepository;
+import com.example.ps_project.repository.Repository;
 import com.example.ps_project.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +17,7 @@ import java.util.List;
 public class ConfigurationFile {
 
     @Bean
-    CommandLineRunner commandLineRunner(UserRepository userRepository, ProductRepository productRepository, CategoryRepository categoryRepository) {
+    CommandLineRunner commandLineRunner(Repository userRepository, Repository productRepository, Repository categoryRepository) {
         return args -> {
 
             User zoltan = new User("Zoltan", "Darlaczi", "darlaczi.zoltan@gmail.com");
@@ -37,9 +36,9 @@ public class ConfigurationFile {
             nikeCourtV.setCategory(shoes);
             adidasNano.setCategory(shoes);
 
-            userRepository.saveAll(List.of(zoltan, alex));
-            categoryRepository.saveAll(List.of(shoes, shorts));
-            productRepository.saveAll(List.of(nikeCourtV,adidasNano));
+            userRepository.addItems(List.of(zoltan, alex));
+            categoryRepository.addItems(List.of(shoes, shorts));
+            productRepository.addItems(List.of(nikeCourtV,adidasNano));
         };
     }
 }
