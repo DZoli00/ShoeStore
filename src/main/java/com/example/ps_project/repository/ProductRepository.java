@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public class ProductRepository implements Repository{
+public class ProductRepository implements Repository<Product>{
     ProductJpaRepository jpaRepositoryInt;
 
     @Autowired
@@ -18,19 +18,17 @@ public class ProductRepository implements Repository{
     }
 
     @Override
-    public List<Object> findAllItems() {
-        return Collections.singletonList(jpaRepositoryInt.findAll());
+    public List<Product> findAllItems() {
+        return jpaRepositoryInt.findAll();
     }
 
     @Override
-    public void addItem(Object o) {
-        Product newProduct = (Product) o;
-        jpaRepositoryInt.save(newProduct);
+    public void addItem(Product o) {
+        jpaRepositoryInt.save(o);
     }
 
     @Override
-    public void addItems(List<Object> objects) {
-        List<Product> products = (List<Product>)(List<?>) objects;
-        jpaRepositoryInt.saveAll(products);
+    public void addItems(List<Product> objects) {
+        jpaRepositoryInt.saveAll(objects);
     }
 }
