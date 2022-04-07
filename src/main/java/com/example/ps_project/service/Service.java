@@ -4,9 +4,9 @@ import com.example.ps_project.entity.User;
 
 import java.util.List;
 
-public interface Service{
+public interface Service<T>{
 
-    public abstract List<Object> getItems();
+    List<T> getItems();
 
-    public abstract void addNewItem(Object o);
+    void addNewItem(T o);
 }

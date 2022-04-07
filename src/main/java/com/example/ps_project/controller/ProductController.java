@@ -20,7 +20,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Object> getProducts(){ return productService.getItems(); }
+    public List<Product> getProducts(){ return productService.getItems(); }
 
     @PostMapping
     public void registerNewProduct(@RequestBody Product product){productService.addNewItem(product);}

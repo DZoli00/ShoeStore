@@ -21,7 +21,7 @@ public class CategoryController {
     }
     
     @GetMapping
-    public List<Object> getCategories(){ return categoryService.getItems();}
+    public List<Category> getCategories(){ return categoryService.getItems();}
 
     @PostMapping
     public void registerNewCategory(@RequestBody Category category){categoryService.addNewItem(category);}

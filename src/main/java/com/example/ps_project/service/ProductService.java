@@ -16,7 +16,7 @@ import java.util.Optional;
 //metodele GET si POST
 
 @org.springframework.stereotype.Service
-public class ProductService implements Service {
+public class ProductService implements Service<Product>{
 
     private final Repository productRepository;
 
@@ -31,13 +31,12 @@ public class ProductService implements Service {
     }
 
     @Override
-    public List<Object> getItems() {
-        return Collections.singletonList(productRepository.findAllItems());
+    public List<Product> getItems() {
+        return productRepository.findAllItems();
     }
 
     @Override
-    public void addNewItem(Object o) {
-        Product newProduct = (Product)o;
-        productRepository.addItem(newProduct);
+    public void addNewItem(Product o) {
+        productRepository.addItem(o);
     }
 }

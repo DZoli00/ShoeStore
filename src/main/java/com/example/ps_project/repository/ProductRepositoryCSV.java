@@ -1,10 +1,16 @@
 package com.example.ps_project.repository;
 
 import com.example.ps_project.entity.Product;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@Component
 public class ProductRepositoryCSV implements Repository<Product>{
 
     List<Product> products = new ArrayList<Product>();

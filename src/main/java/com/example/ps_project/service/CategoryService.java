@@ -16,7 +16,7 @@ import java.util.Optional;
 //metoda GET si POST
 
 @org.springframework.stereotype.Service
-public class CategoryService implements Service {
+public class CategoryService implements Service<Category> {
 
     private final Repository categoryRepository;
 
@@ -31,13 +31,12 @@ public class CategoryService implements Service {
     }
 
     @Override
-    public List<Object> getItems() {
-        return Collections.singletonList(categoryRepository.findAllItems());
+    public List<Category> getItems() {
+        return categoryRepository.findAllItems();
     }
 
     @Override
-    public void addNewItem(Object o) {
-        Category newCategory = (Category)o;
-        categoryRepository.addItem(newCategory);
+    public void addNewItem(Category o) {
+        categoryRepository.addItem(o);
     }
 }

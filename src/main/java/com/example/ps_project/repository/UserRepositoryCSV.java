@@ -1,10 +1,16 @@
 package com.example.ps_project.repository;
 
-import com.example.ps_project.laborator.User;
+import com.example.ps_project.entity.User;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@Component
 public class UserRepositoryCSV implements Repository<User>{
 
     List<User> users = new ArrayList<User>();

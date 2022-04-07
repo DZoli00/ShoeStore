@@ -19,7 +19,7 @@ import java.util.Optional;
 //metodele GET, POST, PUT dupa id si DELETE dupa id
 
 @org.springframework.stereotype.Service
-public class UserService implements Service {
+public class UserService implements Service<User> {
 
     private final Repository userRepository;
 
@@ -39,8 +39,8 @@ public class UserService implements Service {
      * @return
      */
     @Override
-    public List<Object> getItems() {
-        return Collections.singletonList(userRepository.findAllItems());
+    public List<User> getItems() {
+        return userRepository.findAllItems();
     }
 
     /**
@@ -48,9 +48,8 @@ public class UserService implements Service {
      * @param o
      */
     @Override
-    public void addNewItem(Object o) {
-        User newUser = (User) o;
-        userRepository.addItem(newUser);
+    public void addNewItem(User o) {
+        userRepository.addItem(o);
     }
 
 //    /**

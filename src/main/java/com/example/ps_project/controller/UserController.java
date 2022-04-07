@@ -3,6 +3,8 @@ package com.example.ps_project.controller;
 import com.example.ps_project.entity.User;
 import com.example.ps_project.service.Service;
 import com.example.ps_project.service.UserService;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,8 @@ import java.util.List;
 //in Controller implementam metodele/actiunile
 @RestController
 @RequestMapping(path="api/v1/user")
+@Getter
+@Setter
 public class UserController {
 
     private final Service userService;
@@ -24,7 +28,7 @@ public class UserController {
 
     //metoda GET
     @GetMapping
-    public List<Object> getUsers(){ return userService.getItems();}
+    public List<User> getUsers(){ return userService.getItems();}
 
     //metoda POST
     @PostMapping
