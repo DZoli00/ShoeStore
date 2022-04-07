@@ -26,20 +26,20 @@ public class User {
     )
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String email;
 
     public User(Long id, String first_name, String last_name, String email) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = first_name;
+        this.lastName = last_name;
         this.email = email;
     }
 
     public User(String first_name, String last_name, String email) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = first_name;
+        this.lastName = last_name;
         this.email = email;
     }
 
