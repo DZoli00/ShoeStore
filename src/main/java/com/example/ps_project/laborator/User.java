@@ -1,8 +1,10 @@
 package com.example.ps_project.laborator;
 
-public class User {
-    String FirstName = null;
-    String LastName = null;
+public abstract class User {
+
+    public String FirstName = null;
+    public String LastName = null;
+    public DataSource dataSource;
 
     public User() {
     }
@@ -10,5 +12,9 @@ public class User {
     public User(String firstName, String lastName) {
         FirstName = firstName;
         LastName = lastName;
+        dataSource = new Data();
     }
+
+    public abstract int numarZile();
+
 }

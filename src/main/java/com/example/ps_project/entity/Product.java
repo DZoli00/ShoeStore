@@ -41,6 +41,11 @@ public class Product {
     private String color;
     private String brand;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
     public Product( String name, Float price, Category category, Float rating, String description, String color, String brand) {
         this.name = name;
         this.price = price;

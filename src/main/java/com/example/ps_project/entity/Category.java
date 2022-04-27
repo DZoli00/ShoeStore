@@ -26,19 +26,19 @@ public class Category {
             generator = "category_sequence"
     )
     //@GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private String description;
 
     //foreign key cu tabelul product
     //avem relatie de OneToMany, deoarece putem sa avem mai multe produse intr-o categorie
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @OneToMany( targetEntity = Product.class, cascade = CascadeType.ALL, mappedBy = "category")
     private List<Product> productList = new ArrayList<>();
 
     public Category() {
     }
 
-    public Category(int category_id, String name, String description, List<Product> productList) {
+    public Category(Long category_id, String name, String description, List<Product> productList) {
         this.id = category_id;
         this.name = name;
         this.description = description;

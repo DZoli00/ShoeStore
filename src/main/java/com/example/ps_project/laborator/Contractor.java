@@ -1,6 +1,6 @@
 package com.example.ps_project.laborator;
 
-public class Contractor extends User{
+public class Contractor extends User {
 
     public Contractor(String firstName, String lastName) {
         super(firstName, lastName);
@@ -10,8 +10,14 @@ public class Contractor extends User{
     }
 
     @Override
-    public boolean equals(Object o){
-        return ((Contractor)o).FirstName.equals(this.FirstName) && ((Contractor)o).LastName.equals(this.LastName);
+    public int numarZile() {
+        return super.dataSource.zile() * 13;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        return ((Contractor) o).FirstName.equals(this.FirstName) && ((Contractor) o).LastName.equals(this.LastName);
     }
 
     @Override
