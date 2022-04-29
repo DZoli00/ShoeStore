@@ -31,6 +31,11 @@ public class CategoryService implements Service<Category> {
     }
 
     @Override
+    public List<Category> getItemsCSV() {
+        return categoryRepository.findAllItemsCSV();
+    }
+
+    @Override
     public List<Category> getItems() {
         return categoryRepository.findAllItems();
     }

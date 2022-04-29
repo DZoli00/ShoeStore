@@ -34,6 +34,11 @@ public class UserService implements Service<User> {
         this.userRepository = userRepository;
     }
 
+    @Override
+    public List<User> getItemsCSV() {
+        return userRepository.findAllItemsCSV();
+    }
+
     /**
      *
      * @return

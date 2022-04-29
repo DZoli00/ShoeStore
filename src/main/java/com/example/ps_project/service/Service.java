@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface Service<T>{
 
+    List<T> getItemsCSV();
     List<T> getItems();
 
     void addNewItem(T o);

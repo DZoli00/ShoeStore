@@ -3,8 +3,6 @@ package com.example.ps_project.entity;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -44,7 +42,7 @@ public class Product {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private OrderList orderList;
 
     public Product( String name, Float price, Category category, Float rating, String description, String color, String brand) {
         this.name = name;

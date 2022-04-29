@@ -3,7 +3,7 @@
  - The project represents a shoe store.
 
  - The user can register to the site, and see all the available and unavailable shoes in the store.
- He can select one or more types of shoes. He can create an order by adding the selected shoes to the cart and then putting the order. The user can even modify his profile and all data on his profile, except the username.
+ He can select one or more types of shoes. He can create an orderList by adding the selected shoes to the cart and then putting the orderList. The user can even modify his profile and all data on his profile, except the username.
  The admin has more options than a regular user. He can add, delete, modify and see all the shoes in the store. The admin can even modify the users' data.
  The user and the admin both have "Forgot password" and "Forgot username" options, which means that if they somehow forgot their password or username they can receive an email with their username or an email to modify the password.
 

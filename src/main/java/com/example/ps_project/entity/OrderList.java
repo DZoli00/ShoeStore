@@ -10,9 +10,9 @@ import java.util.List;
 
 @Getter
 @Setter
+@Table(name="shopping_list")
 @Entity
-@Table(name="order")
-public class Order {
+public class OrderList {
     @Id//variabila id este un primary key
     //genereaza primary key-ul automat
     @SequenceGenerator(
@@ -31,36 +31,27 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private Float price;
-
-    @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL, mappedBy = "order")
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL, mappedBy = "orderList")
     private List<Product> products;
+
+    private Float total_price;
 
     private boolean delivered;
 
-    public Order() {
+    public OrderList() {
         products = new ArrayList<>();
     }
 
-    public Order(Long id, User user, Float price) {
+    public OrderList(Long id, User user, Float price) {
         this.id = id;
         this.user = user;
-        this.price = price;
         products = new ArrayList<>();
     }
 
-    public Order(Long id, User user, Float price, List<Product> products) {
-        this.id = id;
-        this.user = user;
-        this.price = price;
-        this.products = products;
-    }
 
-    public Order(Long id, User user, Float price, boolean delivered) {
+    public OrderList(Long id, User user, Float price, int delivered) {
         this.id = id;
         this.user = user;
-        this.price = price;
         this.products = new ArrayList<>();
-        this.delivered = delivered;
     }
 }

@@ -31,6 +31,11 @@ public class ProductService implements Service<Product>{
     }
 
     @Override
+    public List<Product> getItemsCSV() {
+        return productRepository.findAllItemsCSV();
+    }
+
+    @Override
     public List<Product> getItems() {
         return productRepository.findAllItems();
     }

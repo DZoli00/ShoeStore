@@ -34,26 +34,26 @@ public class User {
 
     private String address;
 
-    @OneToMany(targetEntity = Order.class, cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Order> orders;
+    @OneToMany(targetEntity = OrderList.class, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<OrderList> orderLists;
 
     public User(Long id, String first_name, String last_name, String email) {
         this.id = id;
         this.firstName = first_name;
         this.lastName = last_name;
         this.email = email;
-        orders = new ArrayList<>();
+        orderLists = new ArrayList<>();
     }
 
     public User(String first_name, String last_name, String email) {
         this.firstName = first_name;
         this.lastName = last_name;
         this.email = email;
-        orders = new ArrayList<>();
+        orderLists = new ArrayList<>();
     }
 
     public User() {
-        orders = new ArrayList<>();
+        orderLists = new ArrayList<>();
     }
 
     public User(Long id, String firstName, String lastName, String email, String address) {
@@ -62,6 +62,6 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.address = address;
-        orders = new ArrayList<>();
+        orderLists = new ArrayList<>();
     }
 }

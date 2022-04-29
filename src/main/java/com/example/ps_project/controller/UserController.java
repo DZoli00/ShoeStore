@@ -30,6 +30,9 @@ public class UserController {
     @GetMapping
     public List<User> getUsers(){ return userService.getItems();}
 
+    public List<User> getUsersCSV(){
+        return userService.getItemsCSV();
+    }
     //metoda POST
     @PostMapping
     public void registerNewUser(@RequestBody User user){

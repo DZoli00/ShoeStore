@@ -22,6 +22,10 @@ public class ProductController {
     @GetMapping
     public List<Product> getProducts(){ return productService.getItems(); }
 
+    public List<Product> getProductsCSV(){
+        return productService.getItemsCSV();
+    }
+
     @PostMapping
     public void registerNewProduct(@RequestBody Product product){productService.addNewItem(product);}
 }
