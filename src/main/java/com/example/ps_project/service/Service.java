@@ -10,4 +10,7 @@ public interface Service<T>{
     List<T> getItems();
 
     void addNewItem(T o);
+
+    void delete(Long id);
+
 }

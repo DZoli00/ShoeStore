@@ -56,6 +56,8 @@ public class ConfigurationFile {
                System.out.println(user1.getEmail());
            }
            reader.close();
+
+
         };
     }
 }

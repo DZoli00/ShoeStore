@@ -1,6 +1,8 @@
 package com.example.ps_project.service;
 
 import com.example.ps_project.entity.OrderList;
+import com.example.ps_project.entity.Product;
+import com.example.ps_project.entity.User;
 import com.example.ps_project.repository.OrderListRepository;
 
 import com.example.ps_project.repository.Repository;
@@ -31,5 +33,18 @@ public class OrderListService implements Service<OrderList>{
     @Override
     public void addNewItem(OrderList o) {
         orderRepository.addItem(o);
+    }
+
+    @Override
+    public void delete(Long id) {
+        orderRepository.deleteById(id);
+    }
+
+    public void update(Long id, User user, List<Product> products, Float totalPrice, boolean delivered){
+        OrderList orderList = (OrderList) orderRepository.findById(id);
+        orderList.setUser(user);
+        orderList.setProducts(products);
+        orderList.setTotal_price(totalPrice);
+        orderList.setDelivered(delivered);
     }
 }

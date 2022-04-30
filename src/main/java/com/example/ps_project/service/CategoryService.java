@@ -5,6 +5,7 @@ import com.example.ps_project.repository.CategoryRepository;
 import com.example.ps_project.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -43,5 +44,17 @@ public class CategoryService implements Service<Category> {
     @Override
     public void addNewItem(Category o) {
         categoryRepository.addItem(o);
+    }
+
+    @Override
+    public void delete(Long id) {
+        categoryRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void update(Long categoryId, String name, String description){
+        Category category = (Category) categoryRepository.findById(categoryId);
+        category.setName(name);
+        category.setDescription(description);
     }
 }

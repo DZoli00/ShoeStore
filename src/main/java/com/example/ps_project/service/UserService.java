@@ -57,6 +57,11 @@ public class UserService implements Service<User> {
         userRepository.addItem(o);
     }
 
+    @Override
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
+
 //    /**
 //     * Delete user.
 //     *
@@ -71,26 +76,13 @@ public class UserService implements Service<User> {
 //    }
 //
 //
-//    /**
-//     * Update user.
-//     *
-//     * @param userId    the user id
-//     * @param firstName the first name
-//     * @param lastName  the last name
-//     * @param email     the email
-//     */
-//    @Transactional
-//    public void updateUser(Long userId, String firstName, String lastName, String email){
-//        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("user with id " + userId + " doesn't exist"));
-//        if(firstName != null) {
-//            user.setFirst_name(firstName);
-//        }
-//        if(lastName != null) {
-//            user.setLast_name(lastName);
-//        }
-//        if(email != null) {
-//            user.setEmail(email);
-//        }
-//    }
+   @Transactional
+    public void update(Long userId, String firstName, String lastName, String email, String address){
+        User user = (User) userRepository.findById(userId);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setAddress(address);
+    }
 
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping(path="api/v1/category")
 public class CategoryController {
 
-    private final Service categoryService;
+    private final CategoryService categoryService;
 
     @Autowired
     public CategoryController(CategoryService categoryService) {
@@ -29,4 +29,18 @@ public class CategoryController {
 
     @PostMapping
     public void registerNewCategory(@RequestBody Category category){categoryService.addNewItem(category);}
+
+    @DeleteMapping(path= "{categoryId}")
+    public void deleteCategory(@PathVariable("categoryId") Long categoryId){
+        categoryService.delete(categoryId);
+    }
+
+    @PutMapping(path="{categoryId}")
+    public void update(
+            @PathVariable("categoryId") Long categoryId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String description
+    ){
+        categoryService.update(categoryId,name,description);
+    }
 }

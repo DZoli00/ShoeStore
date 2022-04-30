@@ -1,5 +1,6 @@
 package com.example.ps_project.service;
 
+import com.example.ps_project.entity.Category;
 import com.example.ps_project.entity.Product;
 import com.example.ps_project.repository.ProductRepository;
 import com.example.ps_project.repository.Repository;
@@ -43,5 +44,22 @@ public class ProductService implements Service<Product>{
     @Override
     public void addNewItem(Product o) {
         productRepository.addItem(o);
+    }
+
+    @Override
+    public void delete(Long id) {
+        productRepository.deleteById(id);
+    }
+
+    public void update(Long id, String name, Float price, Category category, Float rating, String description, String color, String brand){
+        Product product = (Product) productRepository.findById(id);
+        product.setName(name);
+        product.setPrice(price);
+        product.setCategory(category);
+        product.setRating(rating);
+        product.setDescription(description);
+        product.setColor(color);
+        product.setBrand(brand);
+
     }
 }

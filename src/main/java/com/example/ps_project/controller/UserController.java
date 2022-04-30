@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 public class UserController {
 
-    private final Service userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -40,19 +40,19 @@ public class UserController {
         userService.addNewItem(user);
     }
 
-    /*//metoda DELETE dupa id
-    @DeleteMapping(path= "{useId}")
-    public void deleteUser(@PathVariable("useId") Long useId){
-        userService.deleteUser(useId);
+    @DeleteMapping(path= "{userId}")
+    public void deleteUser(@PathVariable("userId") Long userId){
+        userService.delete(userId);
     }
 
-    //metoda PUT(update) dupa id
+
     @PutMapping(path = "{userId}")
     public void updateUser(
             @PathVariable("userId") Long userId,
             @RequestParam(required = false) String first_name,
             @RequestParam(required = false) String last_name,
-            @RequestParam(required = false) String email){
-        userService.updateUser(userId, first_name, last_name, email);
-    }*/
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String address){
+            userService.update(userId, first_name, last_name, email,address);
+    }
 }

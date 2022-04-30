@@ -41,4 +41,36 @@ public class OrderListRepository implements Repository<OrderList>{
         jpaRepository.saveAll(objects);
         this.orders.addAll(objects);
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return jpaRepository.existsById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        jpaRepository.deleteById(id);
+        for(OrderList ord: orders){
+            if(ord.getId().equals(id)){
+                orders.remove(ord);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public OrderList findById(Long id) {
+        return jpaRepository.getById(id);
+    }
+
+    @Override
+    public Long findByIdCSV(Long id) {
+        for(OrderList ord: orders){
+            if(ord.getId().equals(id)){
+                return id;
+            }
+        }
+        return null;
+    }
+
 }
