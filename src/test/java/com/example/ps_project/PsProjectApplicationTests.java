@@ -21,7 +21,6 @@ class PsProjectApplicationTests {
         FactoryUser factoryUser = new FactoryUser();
         User user = factoryUser.create(Users.VISITATOR, "obu", "obu");
         User expectedUser = new Visitator("obu", "obu");
-
         assertEquals(user,expectedUser);
 
     }

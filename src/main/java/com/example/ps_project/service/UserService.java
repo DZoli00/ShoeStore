@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.lang.annotation.Annotation;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -21,7 +22,7 @@ import java.util.Optional;
 @org.springframework.stereotype.Service
 public class UserService implements Service<User> {
 
-    private final Repository userRepository;
+    private final UserRepository userRepository;
 
     /**
      * Instantiates a new User service.
@@ -62,20 +63,6 @@ public class UserService implements Service<User> {
         userRepository.deleteById(id);
     }
 
-//    /**
-//     * Delete user.
-//     *
-//     * @param userId the user id
-//     */
-//    public void deleteUser(Long userId) {
-//        boolean found = userRepository.existsById(userId);
-//        if (!found) {
-//            throw new IllegalStateException("User with this name " + userId + "does not exist");
-//        }
-//        userRepository.deleteById(userId);
-//    }
-//
-//
    @Transactional
     public void update(Long userId, String firstName, String lastName, String email, String address){
         User user = (User) userRepository.findById(userId);
@@ -83,6 +70,7 @@ public class UserService implements Service<User> {
         user.setLastName(lastName);
         user.setEmail(email);
         user.setAddress(address);
+        userRepository.updateList(userId,firstName,lastName,email,address);
     }
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Table
 @Getter
 @Setter
-public class User {
+public abstract class User {
 
     @Id //variabila id este un primary key
     //genereaza primary key-ul automat
@@ -36,6 +36,13 @@ public class User {
 
     @OneToMany(targetEntity = OrderList.class, cascade = CascadeType.ALL, mappedBy = "user")
     private List<OrderList> orderLists;
+
+    public User(String firstName, String lastName, String email, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+    }
 
     public User(Long id, String first_name, String last_name, String email) {
         this.id = id;
@@ -64,4 +71,15 @@ public class User {
         this.address = address;
         orderLists = new ArrayList<>();
     }
+
+    public User(Long id, String firstName, String lastName, String email, String address, List<OrderList> orderLists) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.orderLists = orderLists;
+    }
+
+
 }

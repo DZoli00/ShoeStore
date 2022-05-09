@@ -48,10 +48,17 @@ public class OrderList {
         products = new ArrayList<>();
     }
 
-
     public OrderList(Long id, User user, Float price, int delivered) {
         this.id = id;
         this.user = user;
         this.products = new ArrayList<>();
+    }
+
+    public void calculatePrice(){
+        float suma = 0;
+        for( Product p: products){
+            suma += p.getPrice();
+        }
+        this.total_price = suma;
     }
 }

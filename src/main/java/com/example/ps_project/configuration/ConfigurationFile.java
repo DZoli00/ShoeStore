@@ -1,8 +1,6 @@
 package com.example.ps_project.configuration;
 
-import com.example.ps_project.entity.Category;
-import com.example.ps_project.entity.Product;
-import com.example.ps_project.entity.User;
+import com.example.ps_project.entity.*;
 import com.example.ps_project.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +19,10 @@ public class ConfigurationFile {
     CommandLineRunner commandLineRunner(Repository userRepository, ProductRepository productRepository, CategoryRepository categoryRepository, OrderListRepository orderListRepository) {
         return args -> {
 
-            User zoltan = new User("Zoltan", "Darlaczi", "darlaczi.zoltan@gmail.com");
+            FactoryUser factoryUser = new FactoryUser();
 
-            User alex = new User("Alex", "Alex", "alex.alex@gmail.com");
+            User zoltan = factoryUser.create(UserType.ADMIN, "Zoltan", "Darlaczi", "darlaczi.zoltan@gmail.com", "Observator");
+            User alex = factoryUser.create(UserType.NORMALUSER, "Alex", "Alex", "alex.alex@gmail.com", "21 Decembrie");
 
             Category shoes = new Category("Shoes", "Best shoes in town");
 
@@ -47,8 +46,13 @@ public class ConfigurationFile {
             String[] currentDetails;
             while ((currentline = reader.readLine()) != null) {
                 currentDetails = currentline.split(";");
-                User newUser = new User(currentDetails[0],currentDetails[1],currentDetails[2]);
-                 userRepository.addItem(newUser);
+                if(currentDetails[4].compareTo("Admin") == 0) {
+                    userRepository.addItem(factoryUser.create(UserType.ADMIN,currentDetails[0],currentDetails[1],currentDetails[2], currentDetails[3]));
+                } else{
+                    if(currentDetails[4].compareTo("NormalUser") == 0){
+                        userRepository.addItem(factoryUser.create(UserType.NORMALUSER,currentDetails[0],currentDetails[1],currentDetails[2], currentDetails[3]));
+                    }
+                }
             }
 
            for(Object user:userRepository.findAllItemsCSV()){
