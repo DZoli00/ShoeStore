@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * the Repository for the Category entity, it contains and implements the same methods as the Controller class
+ */
 @Component
 public class CategoryRepository implements Repository<Category> {
     CategoryJpaRepository jpaRepositoryInt;
@@ -44,6 +47,10 @@ public class CategoryRepository implements Repository<Category> {
         return jpaRepositoryInt.existsById(id);
     }
 
+    /**
+     *
+     * @param id
+     */
     @Override
     public void deleteById(Long id) {
         jpaRepositoryInt.deleteById(id);

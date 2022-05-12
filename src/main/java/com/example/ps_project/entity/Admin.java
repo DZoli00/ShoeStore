@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+
 public class Admin extends User{
 
     public Admin(String firstName, String lastName, String email, String address) {

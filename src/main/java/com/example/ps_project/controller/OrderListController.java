@@ -5,8 +5,6 @@ import com.example.ps_project.entity.OrderList;
 import com.example.ps_project.entity.Product;
 import com.example.ps_project.entity.User;
 import com.example.ps_project.service.OrderListService;
-import com.example.ps_project.service.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +13,50 @@ import java.util.List;
 @RequestMapping(path="api/v1/orderlist")
 public class OrderListController {
 
-    private final OrderListService orderService;
+    private final OrderListService orderListService;
 
-    @Autowired
     public OrderListController(OrderListService orderListService) {
-        this.orderService = orderListService;
+        this.orderListService = orderListService;
     }
 
+    /**
+     * @return all the orders from the OrderList table
+     */
     @GetMapping
-    public List<OrderList> getOrders(){ return orderService.getItems();}
+    public List<OrderList> getOrders(){ return orderListService.getItems();}
 
+    /**
+     *
+     * @return all the orders reads from CSV
+     */
     public List<OrderList> getOrdersCSV(){
-        return orderService.getItemsCSV();
+        return orderListService.getItemsCSV();
     }
 
+    /**
+     *
+     * @param orderList add a new Order to the table
+     */
     @PostMapping
-    public void registerNewOrder(@RequestBody OrderList orderList){orderService.addNewItem(orderList);}
+    public void registerNewOrder(@RequestBody OrderList orderList){orderListService.addNewItem(orderList);}
 
+    /**
+     *
+     * @param orderId delete an order by orderId
+     */
     @DeleteMapping(path= "{orderId}")
     public void deleteOrderList(@PathVariable("orderId") Long orderId){
-        orderService.delete(orderId);
+        orderListService.delete(orderId);
     }
 
+    /**
+     * update an Order selected by id
+     * @param id
+     * @param user
+     * @param products
+     * @param totalPrice
+     * @param delivered
+     */
     @PutMapping(path = "{id}")
     public void update(
             @PathVariable("id") Long id,
@@ -45,6 +65,6 @@ public class OrderListController {
             @RequestParam(required = false) Float totalPrice,
             @RequestParam(required = false) boolean delivered
     ){
-        orderService.update(id,user,products,totalPrice,delivered);
+        orderListService.update(id,user,products,totalPrice,delivered);
     }
 }

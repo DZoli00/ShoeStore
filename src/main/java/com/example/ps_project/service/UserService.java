@@ -35,6 +35,10 @@ public class UserService implements Service<User> {
         this.userRepository = userRepository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<User> getItemsCSV() {
         return userRepository.findAllItemsCSV();
@@ -58,11 +62,23 @@ public class UserService implements Service<User> {
         userRepository.addItem(o);
     }
 
+    /**
+     *
+     * @param id
+     */
     @Override
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
 
+    /**
+     * update method for User
+     * @param userId
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param address
+     */
    @Transactional
     public void update(Long userId, String firstName, String lastName, String email, String address){
         User user = (User) userRepository.findById(userId);

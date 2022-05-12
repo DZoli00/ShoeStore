@@ -19,22 +19,44 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
-    
+
+    /**
+     *
+     * @return the list of the categories
+     */
     @GetMapping
     public List<Category> getCategories(){ return categoryService.getItems();}
 
+    /**
+     *
+     * @return
+     */
     public List<Category> getCategoriesCsv(){
         return categoryService.getItemsCSV();
     }
 
+    /**
+     * add a new category
+     * @param category
+     */
     @PostMapping
     public void registerNewCategory(@RequestBody Category category){categoryService.addNewItem(category);}
 
+    /**
+     * delete a category selected by Id
+     * @param categoryId
+     */
     @DeleteMapping(path= "{categoryId}")
     public void deleteCategory(@PathVariable("categoryId") Long categoryId){
         categoryService.delete(categoryId);
     }
 
+    /**
+     * update a category selected byId
+     * @param categoryId
+     * @param name
+     * @param description
+     */
     @PutMapping(path="{categoryId}")
     public void update(
             @PathVariable("categoryId") Long categoryId,

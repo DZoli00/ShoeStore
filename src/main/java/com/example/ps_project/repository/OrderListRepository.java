@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * the Repository for the Order entity, it contains and implements the same methods as the Controller class
+ */
 @Component
 public class OrderListRepository implements Repository<OrderList>{
 

@@ -31,26 +31,48 @@ public class CategoryService implements Service<Category> {
         this.categoryRepository = categoryRepository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Category> getItemsCSV() {
         return categoryRepository.findAllItemsCSV();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Category> getItems() {
         return categoryRepository.findAllItems();
     }
 
+    /**
+     *
+     * @param o
+     */
     @Override
     public void addNewItem(Category o) {
         categoryRepository.addItem(o);
     }
 
+    /**
+     *
+     * @param id
+     */
     @Override
     public void delete(Long id) {
         categoryRepository.deleteById(id);
     }
 
+    /**
+     * update for Category
+     * @param categoryId
+     * @param name
+     * @param description
+     */
     @Transactional
     public void update(Long categoryId, String name, String description){
         Category category = (Category) categoryRepository.findById(categoryId);

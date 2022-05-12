@@ -2,6 +2,11 @@ package com.example.ps_project.repository;
 
 import java.util.List;
 
+/**
+ *
+ * Repository interface
+ * @param <T>
+ */
 public interface Repository<T> {
     List<T> findAllItemsCSV();
     List<T> findAllItems();

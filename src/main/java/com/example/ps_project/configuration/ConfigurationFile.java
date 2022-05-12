@@ -15,6 +15,14 @@ import java.util.List;
 @Configuration
 public class ConfigurationFile {
 
+    /**
+     * This method populates the DB at the start of the program
+     * @param userRepository
+     * @param productRepository
+     * @param categoryRepository
+     * @param orderListRepository
+     * @return
+     */
     @Bean
     CommandLineRunner commandLineRunner(Repository userRepository, ProductRepository productRepository, CategoryRepository categoryRepository, OrderListRepository orderListRepository) {
         return args -> {

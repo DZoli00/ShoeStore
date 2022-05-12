@@ -11,6 +11,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * the Repository for the Product entity, it contains and implements the same methods as the Controller class
+ */
 @Component
 public class ProductRepository implements Repository<Product> {
     ProductJpaRepository jpaRepositoryInt;

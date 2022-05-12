@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * the Repository for the User entity, it contains and implements the same methods as the Controller class
+ */
 @Component
 public class UserRepository implements Repository<User> {
     UserJpaRepository jpaRepositoryInt;

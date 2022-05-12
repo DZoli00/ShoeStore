@@ -15,31 +15,60 @@ public class OrderListService implements Service<OrderList>{
 
     private final Repository orderRepository;
 
+
+    /**
+     *
+     * @param orderListRepository
+     */
     @Autowired
     public OrderListService(OrderListRepository orderListRepository) {
         this.orderRepository = orderListRepository;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<OrderList> getItemsCSV() {
         return orderRepository.findAllItemsCSV();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<OrderList> getItems() {
         return orderRepository.findAllItems();
     }
 
+    /**
+     *
+     * @param o
+     */
     @Override
     public void addNewItem(OrderList o) {
         orderRepository.addItem(o);
     }
 
+    /**
+     *
+     * @param id
+     */
     @Override
     public void delete(Long id) {
         orderRepository.deleteById(id);
     }
 
+    /**
+     * update method for OrderList
+     * @param id
+     * @param user
+     * @param products
+     * @param totalPrice
+     * @param delivered
+     */
     public void update(Long id, User user, List<Product> products, Float totalPrice, boolean delivered){
         OrderList orderList = (OrderList) orderRepository.findById(id);
         orderList.setUser(user);
