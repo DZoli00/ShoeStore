@@ -77,16 +77,16 @@ public class UserService implements Service<User> {
      * @param firstName
      * @param lastName
      * @param email
-     * @param address
+     * @param password
      */
    @Transactional
-    public void update(Long userId, String firstName, String lastName, String email, String address){
+    public void update(Long userId, String firstName, String lastName, String email, String password){
         User user = (User) userRepository.findById(userId);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
-        user.setAddress(address);
-        userRepository.updateList(userId,firstName,lastName,email,address);
+        user.setPassword(password);
+        userRepository.updateList(userId,firstName,lastName,email,password);
     }
 
 }

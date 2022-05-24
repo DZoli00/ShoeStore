@@ -1,6 +1,7 @@
 package com.example.ps_project.service;
 
 import com.example.ps_project.entity.Category;
+import com.example.ps_project.entity.Product;
 import com.example.ps_project.repository.CategoryRepository;
 import com.example.ps_project.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +79,10 @@ public class CategoryService implements Service<Category> {
         Category category = (Category) categoryRepository.findById(categoryId);
         category.setName(name);
         category.setDescription(description);
+    }
+
+    public List<Product> getProducts(Long id){
+        Category category = (Category) categoryRepository.findById(id);
+        return category.getProductList();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.ps_project.repository;
 
 import com.example.ps_project.entity.Category;
+import com.example.ps_project.entity.Product;
 import com.example.ps_project.jparepository.CategoryJpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -76,6 +77,4 @@ public class CategoryRepository implements Repository<Category> {
         }
         return null;
     }
-
-
 }

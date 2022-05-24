@@ -24,7 +24,7 @@ public class UserRepository implements Repository<User> {
     public List<User> findAllItemsCSV() {
 
         for(User user: users){
-            System.out.println(user.getFirstName() + " " + user.getLastName() + " " +user.getEmail() + " " + user.getAddress() + " " + user.getClass());
+            System.out.println(user.getFirstName() + " " + user.getLastName() + " " +user.getEmail() + " " + user.getPassword() + " " + user.getClass());
         }
         System.out.println();
         return this.users;

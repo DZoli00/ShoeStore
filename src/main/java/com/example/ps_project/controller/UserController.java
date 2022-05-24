@@ -60,10 +60,10 @@ public class UserController {
     public void registerNewUser(@RequestBody NormalUser user, @PathVariable("type") String type) throws Exception {
         User newUser = null;
         if (type.equals("ADMIN")) {
-            newUser = factoryUser.create(UserType.ADMIN, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAddress());
+            newUser = factoryUser.create(UserType.ADMIN, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
         } else {
             if (type.equals("NORMALUSER"))
-                newUser = factoryUser.create(UserType.NORMALUSER, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAddress());
+                newUser = factoryUser.create(UserType.NORMALUSER, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
         }
         if(newUser == null){
             throw new Exception("Invalid user");

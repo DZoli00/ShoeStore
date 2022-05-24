@@ -1,8 +1,8 @@
 package com.example.ps_project.controller;
 
 import com.example.ps_project.entity.Category;
+import com.example.ps_project.entity.Product;
 import com.example.ps_project.service.CategoryService;
-import com.example.ps_project.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +26,11 @@ public class CategoryController {
      */
     @GetMapping
     public List<Category> getCategories(){ return categoryService.getItems();}
+
+    @GetMapping(path="{id}")
+    public List<Product> getProducts(@PathVariable("id") Long id){
+        return categoryService.getProducts(id);
+    }
 
     /**
      *
@@ -65,4 +70,7 @@ public class CategoryController {
     ){
         categoryService.update(categoryId,name,description);
     }
+
+
+
 }

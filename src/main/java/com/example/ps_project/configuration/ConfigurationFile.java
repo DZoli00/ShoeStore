@@ -29,12 +29,14 @@ public class ConfigurationFile {
 
             FactoryUser factoryUser = new FactoryUser();
 
-            User zoltan = factoryUser.create(UserType.ADMIN, "Zoltan", "Darlaczi", "darlaczi.zoltan@gmail.com", "Observator");
-            User alex = factoryUser.create(UserType.NORMALUSER, "Alex", "Alex", "alex.alex@gmail.com", "21 Decembrie");
+            User zoltan = factoryUser.create(UserType.ADMIN, "Zoltan", "Darlaczi", "darlaczi.zoltan@gmail.com", "1234");
+            User alex = factoryUser.create(UserType.NORMALUSER, "Alex", "Alex", "alex.alex@gmail.com", "12345");
 
             Category shoes = new Category("Shoes", "Best shoes in town");
 
             Category shorts = new Category("Shorts", "Best shorts for sport");
+
+            Category sportShoes = new Category("Sport shoes", "Best shoesfor sport");
 
 
             Product nikeCourtV = new Product("Under Army", (float) 120.4, (float) 2.4, "asdddfasd", "WHITE", "NIKE");
@@ -46,7 +48,7 @@ public class ConfigurationFile {
             adidasNano.setCategory(shoes);
 
             userRepository.addItems(List.of(zoltan, alex));
-            categoryRepository.addItems(List.of(shoes, shorts));
+            categoryRepository.addItems(List.of(shoes, shorts, sportShoes));
             productRepository.addItems(List.of(nikeCourtV,adidasNano));
 
             BufferedReader reader = new BufferedReader(new FileReader("user.csv"));

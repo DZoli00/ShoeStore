@@ -32,7 +32,7 @@ public abstract class User {
     private String lastName;
     private String email;
 
-    private String address;
+    private String Password;
 
     @OneToMany(targetEntity = OrderList.class, cascade = CascadeType.ALL, mappedBy = "user")
     private List<OrderList> orderLists;
@@ -41,7 +41,7 @@ public abstract class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.address = address;
+        this.Password = address;
     }
 
     public User(Long id, String first_name, String last_name, String email) {
@@ -68,7 +68,7 @@ public abstract class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.address = address;
+        this.Password = address;
         orderLists = new ArrayList<>();
     }
 
@@ -77,9 +77,8 @@ public abstract class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.address = address;
+        this.Password = address;
         this.orderLists = orderLists;
     }
 
-id
 }
